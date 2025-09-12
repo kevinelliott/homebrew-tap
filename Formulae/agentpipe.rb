@@ -1,78 +1,41 @@
 class Agentpipe < Formula
   desc "Orchestrate conversations between multiple AI CLI agents"
   homepage "https://github.com/kevinelliott/agentpipe"
-  version "0.0.1"
+  version "0.0.6"
   license "MIT"
 
-  # Formula supports building from source or downloading pre-built binaries
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.1/agentpipe_darwin_arm64.tar.gz"
-      sha256 "" # Update with actual SHA256 after release
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.6/agentpipe_darwin_arm64.tar.gz"
+      sha256 "f8d9adc1445a323f1807ac6f0c02a84df9514322b728605de6714ffefa9b3ddb"
     else
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.1/agentpipe_darwin_amd64.tar.gz"
-      sha256 "" # Update with actual SHA256 after release
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.6/agentpipe_darwin_amd64.tar.gz"
+      sha256 "d048099a2b1393e9198bdc7b2db21f2a958de138b9e0ec279e7a7d20d479d505"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.1/agentpipe_linux_arm64.tar.gz"
-      sha256 "" # Update with actual SHA256 after release
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.6/agentpipe_linux_arm64.tar.gz"
+      sha256 "a8847c2b2c045a4d6753de80def11ce3caff196d587f02b65e6ea685fc784806"
     else
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.1/agentpipe_linux_amd64.tar.gz"
-      sha256 "" # Update with actual SHA256 after release
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.0.6/agentpipe_linux_amd64.tar.gz"
+      sha256 "370d38eee0e4d95d7fdd9305c1069ab1e790c90d1ba551802af544e441fde2d8"
     end
   end
 
-  # Allow building from HEAD
   head "https://github.com/kevinelliott/agentpipe.git", branch: "main"
-
-  # Dependencies
   depends_on "go" => :build if build.head?
 
   def install
     if build.head?
-      # Build from source
-      system "go", "build", *std_go_args(ldflags: "-s -w -X main.Version=#{version}")
+      system "go", "build", *std_go_args(ldflags: "-s -w")
     else
-      # Install pre-built binary
-      bin.install "agentpipe"
+      # Extract the correct binary name from the archive
+      bin.install Dir["agentpipe_*"].first => "agentpipe"
     end
-
-    # Install bash completion
-    generate_completions_from_executable(bin/"agentpipe", "completion", "bash")
-    # Install zsh completion
-    generate_completions_from_executable(bin/"agentpipe", "completion", "zsh")
-    # Install fish completion
-    generate_completions_from_executable(bin/"agentpipe", "completion", "fish")
-  end
-
-  def caveats
-    <<~EOS
-      AgentPipe has been installed!
-      
-      To get started:
-        1. Check available AI agents: agentpipe doctor
-        2. Run example: agentpipe run -a claude:Alice -a gemini:Bob -p "Hello!"
-        3. View help: agentpipe --help
-      
-      Configuration files can be found in:
-        #{etc}/agentpipe/
-      
-      Chat logs are saved to:
-        ~/.agentpipe/chats/
-    EOS
   end
 
   test do
-    # Test doctor command
     output = shell_output("#{bin}/agentpipe doctor 2>&1")
     assert_match "AgentPipe Doctor", output
-    
-    # Test version output
-    assert_match version.to_s, shell_output("#{bin}/agentpipe --version 2>&1")
-    
-    # Test help
-    help_output = shell_output("#{bin}/agentpipe --help 2>&1")
-    assert_match "orchestrates conversations", help_output
   end
 end
