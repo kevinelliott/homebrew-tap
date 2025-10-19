@@ -1,24 +1,24 @@
 class Agentpipe < Formula
   desc "Orchestrate conversations between multiple AI CLI agents"
   homepage "https://github.com/kevinelliott/agentpipe"
-  version "0.1.1"
+  version "0.1.3"
   license "MIT"
 
   if OS.mac?
     if Hardware::CPU.arm?
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.1/agentpipe_darwin_arm64.tar.gz"
-      sha256 "94e52e7d4ebc482d39c02ee1c4c2f5d0df87566dc7ac5896bc4c8305ee001fb3"
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.3/agentpipe_darwin_arm64.tar.gz"
+      sha256 "57dd0fdd46bbb273ec2d2454cf2386a26048bd84a47b87fc58c1d95b228aaee9"
     else
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.1/agentpipe_darwin_amd64.tar.gz"
-      sha256 "aee288aa1559ecb09760e5a8e4e170b2ca019d216fb3f6ed5269a89b5df16f03"
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.3/agentpipe_darwin_amd64.tar.gz"
+      sha256 "aa9e62b6820c85716230889ac8dca89d17b961aa8f498c6cd40fb7d4c1ceffb4"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.1/agentpipe_linux_arm64.tar.gz"
-      sha256 "634a282ba5db3c53db28a8b2ba2694b3ac176f20cf0cfa100e3fb1e76e975f3e"
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.3/agentpipe_linux_arm64.tar.gz"
+      sha256 "4c7fabfa84cfd55a1e02d767cc8efb8bcf419ab27a5ced5559315f44de3f930a"
     else
-      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.1/agentpipe_linux_amd64.tar.gz"
-      sha256 "1274be88d5fcd698aaccb8827eb77f2aa6699ab91dd607a7eafd6e801e489b58"
+      url "https://github.com/kevinelliott/agentpipe/releases/download/v0.1.3/agentpipe_linux_amd64.tar.gz"
+      sha256 "c6e1577aa2decccf49f7027dc344d7e48a3fbbbc83ab7fa69ea6146a546b731b"
     end
   end
 
