@@ -7,18 +7,18 @@ class Agentpipe < Formula
   if OS.mac?
     if Hardware::CPU.arm?
       url "https://github.com/kevinelliott/agentpipe/releases/download/v0.5.1/agentpipe_darwin_arm64.tar.gz"
-      sha256 "24ed41cc16ea104516214ecb08afbdf31673f7a940705da6e22f26cfa7bb1481"
+      sha256 "d9e10fe4dc885a530e24698ec220ae14b2673dd0a26d07ba0b9f9f3eba7fb82b"
     else
       url "https://github.com/kevinelliott/agentpipe/releases/download/v0.5.1/agentpipe_darwin_amd64.tar.gz"
-      sha256 "fbe15efb0bcb6b1f7a5b583ce632fa119c4a0b51db37830a4e7b727e947be5ec"
+      sha256 "cafaadb4ad962e383fa8d90f7e9f462090a39bf80c193919bcdfe3f8ccfa2cbb"
     end
   elsif OS.linux?
     if Hardware::CPU.arm?
       url "https://github.com/kevinelliott/agentpipe/releases/download/v0.5.1/agentpipe_linux_arm64.tar.gz"
-      sha256 "c71e606bb2dc15e8391afaacea233480ce53e591a66cf9cc08d211e513af4568"
+      sha256 "c0bba42fbb20dca0b497171f54d1f76727b710e5c0263ed85912217145968873"
     else
       url "https://github.com/kevinelliott/agentpipe/releases/download/v0.5.1/agentpipe_linux_amd64.tar.gz"
-      sha256 "8eaea0c44547864fdc8cc79660c1cbe25198d75f98477c48b4d9c817fbd70414"
+      sha256 "c47b14feed8f168cb1b97334a658ba85a43b56563db5a360931656a8ef66b9f8"
     end
   end
 
